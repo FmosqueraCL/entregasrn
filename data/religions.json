@@ -1,0 +1,104 @@
+[
+      {
+        "id": 1,
+        "name": "Roman Catholicism",
+        "description": "The largest branch of Christianity, based on the teachings of Jesus and the apostolic succession of the popes.",
+        "category": "Christianity",
+        "year_of_foundation": "1st century CE",
+        "followers": "1.3 billion",
+        "main_prophets": "Jesus, Moses, Elijah, Isaiah, John the Baptist",
+        "url": "https://media.istockphoto.com/id/1445481949/es/foto/las-manos-humanas-abren-la-mano-de-adoraci%C3%B3n.jpg?s=1024x1024&amp;w=is&amp;k=20&amp;c=JNEcMGjOOJHvrTM7_Z1_F7qy8C2JteylzChOzCMg5_I="
+      },
+      {
+        "id": 2,
+        "name": "Protestantism",
+        "description": "A movement that emerged in the 16th century as a reaction to the corruption and abuses of the Catholic Church.",
+        "category": "Christianity",
+        "year_of_foundation": "16th century CE",
+        "followers": "800 million",
+        "main_prophets": "Jesus, Moses, Elijah, Isaiah, John the Baptist",
+        "url": "https://media.istockphoto.com/id/1462732946/es/foto/monumento-a-mart%C3%ADn-lutero-frente-a-la-iglesia-del-mercado-hannover-baja-sajonia-alemania.jpg?s=2048x2048&w=is&k=20&c=E0HQGwYgHdCpTwf9VaQngmAa8NgHT2rQojP0WLdJgFY="
+      },
+      {
+        "id": 11,
+        "name": "Sunni",
+        "description": "The largest branch of Islam, following the consensus of the early Muslim community as the source of religious authority.",
+        "category": "Islam",
+        "year_of_foundation": "7th century CE",
+        "followers": "1.5 billion",
+        "main_prophets": "Muhammad, Abraham, Moses, Jesus, Noah",
+        "url": "https://media.istockphoto.com/id/1465264241/es/foto/almasjed-annabawi-techos-de-mezquitas.jpg?s=2048x2048&w=is&k=20&c=M_pym8Y9I1sGV9vOio-0JnfppvdolkCkNjXmLyqEOoc="
+      },
+      {
+        "id": 12,
+        "name": "Shia",
+        "description": "The second largest branch of Islam, following the descendants of Ali as the source of religious guidance and authority.",
+        "category": "Islam",
+        "year_of_foundation": "7th century CE",
+        "followers": "200 million",
+        "main_prophets": "Muhammad, Ali, Hasan, Husayn, Ja'far",
+        "url": "https://media.istockphoto.com/id/1369291061/es/foto/caligraf%C3%ADa-chi%C3%ADta-que-simboliza-a-ali-como-tigre-de-dios-dibujado-en-una-pizarra.jpg?s=2048x2048&w=is&k=20&c=lx-4DunWmMsqPqoxOUYYhUaliavlCdGg-OmjAB7Etl0="
+      },
+      {
+        "id": 21,
+        "name": "Vaishnavism",
+        "description": "A branch of Hinduism that worships Vishnu as the supreme deity and his avatars, such as Rama and Krishna.",
+        "category": "Hinduism",
+        "year_of_foundation": "Unknown",
+        "followers": "580 million",
+        "main_prophets": "Vishnu, Rama, Krishna, Narada, Vyasa",
+        "url": "https://media.istockphoto.com/id/841673080/es/foto/dharmacakra-rueda-del-dharma-y-dos-doe-s%C3%ADmbolo-del-budismo-hinduismo-jainismo.jpg?s=2048x2048&w=is&k=20&c=8KEZcJk2VdCbjLYpRsHayRcEVhjoKRFqgiM_ducvZ8U="
+      },
+      {
+        "id": 22,
+        "name": "Shaivism",
+        "description": "A branch of Hinduism that worships Shiva as the supreme deity and his aspects, such as Nataraja and Bhairava.",
+        "category": "Hinduism",
+        "year_of_foundation": "Unknown",
+        "followers": "250 million",
+        "main_prophets": "Shiva, Ganesha, Kartikeya, Agastya, Basava",
+        "url": "https://media.istockphoto.com/id/1204128240/es/foto/estatua-de-bailar-dios-shiva-y-cuentas-de-oraci%C3%B3n-tradicional-rudraksha.jpg?s=2048x2048&w=is&k=20&c=VCyZCVdXT6bkraKCaOUCLSz7tw8ZQb34ab0l_kAWmS8="
+      },
+      {
+        "id": 31,
+        "name": "Theravada",
+        "description": "A branch of Buddhism that follows the Pali Canon as the most authoritative scripture and emphasizes the attainment of nirvana through the practice of the Noble Eightfold Path.",
+        "category": "Buddhism",
+        "year_of_foundation": "3rd century BCE",
+        "followers": "150 million",
+        "main_prophets": "Buddha, Ananda, Mahinda, Buddhaghosa, Dalai Lama",
+        "url": "https://media.istockphoto.com/id/1763668643/es/vector/pintura-a-tinta-de-un-monje-budista-meditando-vista-desde-atr%C3%A1s-pintura-tradicional-de-tinta.jpg?s=2048x2048&w=is&k=20&c=Afvjn52FRgstPEezRg6q50oj4DCfRZEY3NU78XGBB78="
+      },
+      {
+        "id": 32,
+        "name": "Mahayana",
+        "description": "A branch of Buddhism that accepts a wider range of scriptures and teachings, and emphasizes the cultivation of compassion and the bodhisattva ideal.",
+        "category": "Buddhism",
+        "year_of_foundation": "1st century CE",
+        "followers": "500 million",
+        "main_prophets": "Buddha, Avalokiteshvara, Manjushri, Nagarjuna, Bodhidharma",
+        "url": "https://media.istockphoto.com/id/1460826607/es/vector/zen-budhist-mandala-s%C3%ADmbolo-de-la-mano-y-el-ojo.jpg?s=2048x2048&w=is&k=20&c=OWwjNJUIMlhUo9zQ0myZHj8_3MGPvnruZTcjFuRShNU="
+      },
+      {
+        "id": 41,
+        "name": "Orthodox",
+        "description": "A branch of Judaism that adheres strictly to the Torah and the Talmud as the sources of religious law and practice.",
+        "category": "Judaism",
+        "year_of_foundation": "18th century CE",
+        "followers": "14 million",
+        "main_prophets": "Moses, Abraham, Isaac, Jacob, David",
+        "url": "https://media.istockphoto.com/id/1478140455/es/foto/libro-abierto-en-mesa-de-madera-y-vista-frontal-del-s%C3%ADmbolo-jud%C3%ADo.jpg?s=2048x2048&w=is&k=20&c=uvOqma4MU5PsB5knNTwnMct8H2KZS9FgpCk5amwI9jU="
+      },
+      {
+        "id": 42,
+        "name": "Conservative",
+        "description": "A branch of Judaism that seeks to balance tradition and modernity, and accepts the authority of the Torah and the Talmud, but also allows for some interpretation and adaptation.",
+        "category": "Judaism",
+        "year_of_foundation": "19th century CE",
+        "followers": "5 million",
+        "main_prophets": "Moses, Abraham, Isaac, Jacob, David",
+        "url": "https://media.istockphoto.com/id/1448252861/es/foto/azulejos-de-cer%C3%A1mica-pared-hebr%C3%B3n-palestina-souvenirs.jpg?s=2048x2048&w=is&k=20&c=NXSAI_8REtsurOPoKLNDxhly1-z07GR-5FDld45Clho="
+      }
+]
+
+  
