@@ -1,13 +1,13 @@
 import { StyleSheet, FlatList, View, Pressable, Text } from 'react-native'
 import { useEffect, useState } from 'react'
-import Header from '../components/Header'
 import ReligionItem from '../components/ReligionItem'
 import  allReligions  from '../data/religions.json'
 import Search from '../components/Search'
 import { colors } from '../global/colors'
 
-const ReligionListCategory = ({ category, setCategory }) => {
-  const [religions, setReligions] = useState([])
+const ReligionListCategory = ( {navigation,route} ) => {
+  const {category} = route.params
+  const [religions, setReligions] = useState([allReligions])
   const [keyword, setKeyword] = useState('')
   useEffect(()=> {
     if (category){
@@ -18,19 +18,18 @@ const ReligionListCategory = ({ category, setCategory }) => {
       const religionsFiltered = allReligions.filter(religion => religion.name.includes(keyword))
       setReligions(religionsFiltered)
     }
-  }, [category, keyword])
+  }, [keyword])
   return (
     <View style={styles.container}>
-      <Header title={category || 'Religions'}/>
       <Search onSearch={setKeyword}/>
       <View style ={styles.container}>
       <FlatList
         data={religions}
         keyExtractor = {item => item.id}
-        renderItem = { ({ item }) => <ReligionItem item={item} />}
+        renderItem = { ({ item }) => <ReligionItem religion={item} navigation={navigation} route={route}/>}
       />
       </View>
-      <Pressable onPress={() => setCategory("")}>
+      <Pressable onPress={()=>navigation.navigate("Home")}>
         <View style={styles.back}>
           <Text style={styles.text}>VOLVER</Text>
         </View>

@@ -1,18 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
-import Header from '../components/Header'
+import { StyleSheet, View } from 'react-native'
 import Categories from '../components/Categories'
 import { colors } from '../global/colors'
 
-const home = ({setCategorySelected}) => {
+const Home = ({navigation,route}) => {
   return (
     <View style={styles.container}>
-      <Header title='RELIGIONES'/>
-      <Categories setCategorySelected = {setCategorySelected}/>
+      <Categories navigation={navigation} route={route}/>
     </View>
   )
 }
 
-export default home
+export default Home
 
 const styles = StyleSheet.create({
   container: {

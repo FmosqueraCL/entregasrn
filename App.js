@@ -1,41 +1,36 @@
-import { StyleSheet, View } from 'react-native';
-import { useState } from 'react'
-import ReligionListCategory from './screens/ReligionListCategory';
+import { StyleSheet, StatusBar } from 'react-native';
 import { useFonts } from 'expo-font'
-import { fonts } from './global/fonts';
-import Home from './screens/home'
-import { colors } from './global/colors'
+import { fonts } from './src/global/fonts';
+import { colors } from './src/global/colors'
+import Navigator from './src/navigation/Navigator'
 
-const App = () => {
-  const [fonstLoaded] = useFonts(fonts)
-  const [categorySelected, setCategorySelected] = useState ('')
-  if (!fonstLoaded) {
+
+const  App = () => {
+  const [fontsLoaded] = useFonts(fonts)
+  if (!fontsLoaded) {
     return null;
   }
   return (
-  <View style={styles.container}>      
-    {
-      categorySelected ?
-      <ReligionListCategory
-        category={categorySelected}
-        setCategory={setCategorySelected}
+  <>
+      <StatusBar
+        backgroundColor={colors.green1}
       />
-      :
-      <Home setCategorySelected={setCategorySelected}/>
-    }
-  </View>
-  )      
+      <Navigator/>
+    </>
+  )
 }
+
+export default App
 
 const styles = StyleSheet.create({
   container: {
-    width:'100%',
-    height:'100%',
-    backgroundColor: colors.green1,
+    flex: 1,
+    backgroundColor: '#fff',
     alignItems: 'center',
-    }
+    justifyContent: 'flex-start',
+  },
 })
 
-export default App
+
 
 
