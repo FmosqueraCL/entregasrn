@@ -1,11 +1,17 @@
 import { StyleSheet, Text, Pressable, useWindowDimensions, Image } from 'react-native'
 import { colors } from '../global/colors'
+import {  useDispatch } from 'react-redux'
+import { setReligionSelected } from '../features/shop/shopSlice'
 
 
-const ReligionItem = ({ religion,navigation }) => {
+const ReligionItem = ({ item,religion,navigation }) => {
   const {width} = useWindowDimensions()
+  const dispatch = useDispatch()
   return (
-    <Pressable style={styles.card} onPress={()=>navigation.navigate("Religion",{id:religion.id})}>
+    <Pressable style={styles.card} onPress={()=>{
+      dispatch( setReligionSelected(item.id) )
+      navigation.navigate("Religion",{id:religion.id})
+      }} >
         <Text style={width > 350 ? styles.text : styles.textMin}>
           {religion.name}
         </Text>

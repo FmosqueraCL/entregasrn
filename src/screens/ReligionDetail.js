@@ -1,15 +1,9 @@
-import { StyleSheet, Text, View, Image, Pressable, useWindowDimensions } from 'react-native'
-import { useEffect, useState } from 'react'
-import allReligions from "../data/religions.json"
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import { colors } from '../global/colors'
+import { useSelector } from 'react-redux'
 
-const ReligionDetail = ({ route,navigation }) => {
-  const {id} = route.params
-  const [ religion,setReligion ] = useState({})
-  useEffect(()=>{
-    const religionFinded = allReligions.find(religion => religion.id === id)
-    setReligion(religionFinded)
-  },[id])
+const ReligionDetail = ({ navigation }) => {
+  const religion = useSelector((state)=> state.shop.value.religionSelected)
   return (
     <View style={styles.container}>
       <View style={styles.content} >
@@ -23,7 +17,10 @@ const ReligionDetail = ({ route,navigation }) => {
             <Text>{religion.description}</Text>
           </View>
           <View style={styles.containerPrice}>
-            <Text style={styles.year}>$ {religion.year_of_foundation}</Text>
+            <Text style={styles.year}>{religion.year_of_foundation}</Text>
+            <Pressable style={styles.buyNow}>
+              <Text style={styles.text}>INSCRIBIRSE</Text>
+            </Pressable>
             <Pressable onPress={()=>navigation.navigate("Home")}>
               <View style={styles.back}>
                 <Text style={styles.text}>VOLVER</Text>

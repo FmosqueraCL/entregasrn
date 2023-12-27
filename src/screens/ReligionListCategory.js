@@ -1,24 +1,21 @@
 import { StyleSheet, FlatList, View, Pressable, Text } from 'react-native'
 import { useEffect, useState } from 'react'
 import ReligionItem from '../components/ReligionItem'
-import  allReligions  from '../data/religions.json'
+import { useSelector } from 'react-redux'
 import Search from '../components/Search'
 import { colors } from '../global/colors'
 
 const ReligionListCategory = ( {navigation,route} ) => {
-  const {category} = route.params
-  const [religions, setReligions] = useState([allReligions])
+  const religionsFilteredByCategory = useSelector(state => state.shop.value.religionsFilteredByCategory)
+  const [religions, setReligions] = useState(religionsFilteredByCategory)
   const [keyword, setKeyword] = useState('')
-  useEffect(()=> {
-    if (category){
-      const religions = allReligions.filter(religion => religion.category === category)
-      const religionsFiltered = religions.filter(religion => religion.name.includes(keyword))
-      setReligions(religionsFiltered)
-    } else {
-      const religionsFiltered = allReligions.filter(religion => religion.name.includes(keyword))
-      setReligions(religionsFiltered)
-    }
-  }, [keyword])
+  useEffect(()=>{
+
+    const religionsFiltered = religionsFilteredByCategory.filter(religion => religion.name.includes(keyword))
+    setReligions( religionsFiltered)
+
+
+},[keyword,religionsFilteredByCategory])
   return (
     <View style={styles.container}>
       <Search onSearch={setKeyword}/>

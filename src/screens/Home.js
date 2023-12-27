@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
     height:'100%',
     flex: 1, 
     alignItems: 'center',
-    backgroundColor: colors.green1, 
+    backgroundColor: colors.lightGray, 
     paddingHorizontal: 10, }
 })
