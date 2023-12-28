@@ -6,7 +6,6 @@ import { colors } from '../global/colors'
 
 const CategoryItem = ({ category,navigation }) => {
     const dispatch = useDispatch() 
-    console.log('hola')
     return (
       <Pressable onPress={()=>{ 
         dispatch (setReligionsFilteredByCategory(category))
@@ -21,8 +20,8 @@ const CategoryItem = ({ category,navigation }) => {
   export default CategoryItem  
   const styles = StyleSheet.create({
       container:{
-          width:80,
-          height:10,
+          width:'80%',
+          height:80,
           marginHorizontal:"10%",
           backgroundColor:colors.green2,
           margin:10,
@@ -31,6 +30,7 @@ const CategoryItem = ({ category,navigation }) => {
           alignItems:"center",
       },
       text: {
+        color:'black',
         fontSize: 20,
     }
   })

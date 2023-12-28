@@ -4,12 +4,12 @@ import {  useDispatch } from 'react-redux'
 import { setReligionSelected } from '../features/shop/shopSlice'
 
 
-const ReligionItem = ({ item,religion,navigation }) => {
+const ReligionItem = ({ religion,navigation }) => {
   const {width} = useWindowDimensions()
   const dispatch = useDispatch()
   return (
     <Pressable style={styles.card} onPress={()=>{
-      dispatch( setReligionSelected(item.id) )
+      dispatch( setReligionSelected(religion.id) )
       navigation.navigate("Religion",{id:religion.id})
       }} >
         <Text style={width > 350 ? styles.text : styles.textMin}>
