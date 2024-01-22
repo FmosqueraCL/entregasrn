@@ -1,12 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Header from '../components/Header'
 import Home from '../screens/Home'
-import ReligionListCategory from '../screens/ReligionListCategory'
-import ReligionDetail from '../screens/ReligionDetail'
+import CreateReligion from '../screens/CreateReligion'
+import JoinReligion from '../screens/JoinReligion'
 
 const Stack = createNativeStackNavigator()
 
-const ShopStack = () => {
+const MainStack = () => {
   return (
     <Stack.Navigator
         initialRouteName='Home'
@@ -14,19 +14,19 @@ const ShopStack = () => {
             ({route})=>{
                 return {
                     header : () => <Header title={
-                                        route.name === "Home" ? "Categorias" :
-                                        route.name === "Category" ? route.params.category :
-                                        "Detalle"
+                                        route.name === "Home" ? "Home" :
+                                        route.name === "CreateReligion" ? "Create Religion" :
+                                        "JoinReligion"
                     }               />
                 }
             }
         }
     >
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Category" component={ReligionListCategory} />
-        <Stack.Screen name="Religion" component={ReligionDetail} />
+        <Stack.Screen name="CreateReligion" component={CreateReligion} />
+        <Stack.Screen name="JoinReligion" component={JoinReligion} />
     </Stack.Navigator>
   )
 }
 
-export default ShopStack
+export default MainStack
