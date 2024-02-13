@@ -1,56 +1,55 @@
-import { StyleSheet, Text, Pressable, useWindowDimensions, Image } from 'react-native'
-import { colors } from '../global/colors'
-import {  useDispatch } from 'react-redux'
-import { setReligionSelected } from '../features/shop/shopSlice'
+import { Pressable, StyleSheet, Text, Image, useWindowDimensions } from 'react-native';
+import { colors } from '../global/colors';
 
-
-const ReligionItem = ({ religion,navigation }) => {
-  const {width} = useWindowDimensions()
-  const dispatch = useDispatch()
+const religionItem = ({ religion, navigation, route }) => {
+  const { id , name, image } = religion; 
+  const { width } = useWindowDimensions(); 
   return (
-    <Pressable style={styles.card} onPress={()=>{
-      dispatch( setReligionSelected(religion.id) )
-      navigation.navigate("Religion",{id:religion.id})
-      }} >
-        <Text style={width > 350 ? styles.text : styles.textMin}>
-          {religion.name}
-        </Text>
-        <Image style={styles.image}
-              resizeMode='cover'
-              source={{ uri: religion.url }}
-        />
+    <Pressable
+      style={styles.container}
+      onPress={() => {
+        navigation.navigate('Religion', { id }); 
+      }}
+    >
+      <Text style={width > 350 ? styles.text : styles.textMin}>{name}</Text>
+      {image ? ( 
+        <Image style={styles.image} resizeMode="cover" source={{ uri: image }} />
+      ) : null}
     </Pressable>
-  )
-}
+  );
+};
 
-export default ReligionItem
 
-const styles = StyleSheet.create({
-  card:{
-    width:'80%',
-    backgroundColor:colors.green2,
-    marginHorizontal:'10%',
-    marginVertical:10,
-    paddingHorizontal:10,
-    paddingVertical:15,
-    borderRadius:5,
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'space-around'
-  },
-  text:{
-    width:"60%",
-    textAlign:"center",
-    fontSize:20
-  },
-  textMin:{
-    width:"60%",
-    textAlign:"center",
-    fontSize:15
-  },
-  image:{
-    minWidth:90,
-    height:90,
-    width:"30%"
-  }
-})
+export default religionItem;
+
+    const styles = StyleSheet.create({
+      container:{
+           width:"80%",
+           height:100,
+           backgroundColor:colors.green1,
+           marginHorizontal:"10%",
+           marginVertical:10,
+           paddingHorizontal:10,
+           paddingVertical:15,
+           borderRadius:5,
+           flexDirection:"row",
+           alignItems:"center",
+           justifyContent:"space-between",
+           gap:30
+       },
+       text:{
+         width:"60%",
+         textAlign:"center",
+         fontSize:20
+       },
+       textMin:{
+         width:"60%",
+         textAlign:"center",
+         fontSize:15
+       },
+       image:{
+           minWidth:90,
+           height:90,
+           width:"30%"
+       }
+   })

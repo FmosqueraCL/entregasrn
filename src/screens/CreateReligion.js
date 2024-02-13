@@ -1,72 +1,85 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Picker, StyleSheet, Pressable } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import { useGetLastReligionQuery, useReligionMutation } from '../app/services/shopServices';
+import { useState } from 'react';
+import { View, Text, TextInput, Alert, StyleSheet, Image } from 'react-native';
+import { useSelector } from 'react-redux';
+import * as ImagePicker from 'expo-image-picker'
+import {  usePostReligionMutation } from '../app/services/shopServices';
+import AddButton from '../components/AddButton';
 
-const CreateReligion = () => {
-  const userID = useSelector(state => state.user.userID);
-  const dispatch = useDispatch();
-  const { data: newID, isLoading: isFetching, isError: isFetchError } = useGetLastReligionQuery();
-  const { mutate, isLoading, isError, error, isSuccess } = useReligionMutation();
-
+const CreateReligion = ({navigation}) => {
+  const userID = useSelector(state => state.auth.value.email)
+  const [mutate, {isSuccess,isError,error}]  = usePostReligionMutation();
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
-  const [url, setUrl] = useState('');
   const [commandments, setCommandments] = useState('');
   const [country, setCountry] = useState('');
   const [goal, setGoal] = useState('');
-
-  const handleSubmit = () => {
-    const newReligion = {
-      id: newID,
-      name,
-      description,
-      category,
-      url,
-      commandments,
-      country,
-      goal,
-      creator: userID,
-    };
-    mutate(newReligion);
-    setName('');
-    setDescription('');
-    setCategory('');
-    setUrl('');
-    setCommandments('');
-    setCountry('');
-    setGoal('');
+  const [image,setImage] = useState("")
+  const newReligion = {
+    name,
+    description,
+    image,
+    commandments,
+    country,
+    goal,
+    creator: userID,
   };
-
-  // Return the JSX elements
+  if (isSuccess) {
+    Alert.alert(
+      'Religion creada exitosamente', 
+      `Has creado una nueva religion llamada ${name}.`, 
+      [ 
+        {
+          text: 'OK',
+          onPress: () => navigation.navigate('Home'), 
+        },
+      ],
+    );
+  }
+  if (isError) {
+    Alert.alert(
+      'Error', 
+      error.message, 
+      [ 
+        {
+          text: 'Cancel', 
+          style: 'cancel',
+        }
+      ],
+    );
+  }
+  const pickImage = async () => {
+    const {granted} = await ImagePicker.requestMediaLibraryPermissionsAsync ()
+    if(granted){
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 0.3,
+            base64:true
+          })
+      
+          if (!result.canceled) {
+            setImage('data:image/jpeg;base64,' + result.assets[0].base64)
+          }
+    }
+ }
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create a Religion</Text>
+      <Text style={styles.title}>Crea una Religion</Text>
       <View style={styles.form}>
         <TextInput
           style={styles.input}
-          placeholder="Enter name"
+          placeholder="Nombre"
           value={name}
           onChangeText={setName}
+          maxLength={50}
         />
         <TextInput
           style={styles.input}
-          placeholder="Enter description"
+          placeholder="Descripción"
           value={description}
           onChangeText={setDescription}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Enter category"
-          value={category}
-          onChangeText={setCategory}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Enter image URL"
-          value={url}
-          onChangeText={setUrl}
+          maxLength={500}
         />
         <TextInput
           style={styles.input}
@@ -74,37 +87,23 @@ const CreateReligion = () => {
           value={commandments}
           onChangeText={setCommandments}
           maxLength={500}
-          multiline={true}
         />
-        <Picker
+        <TextInput
           style={styles.input}
-          selectedValue={country}
-          onValueChange={setCountry}
-        >
-          <Picker.Item label="Select country" value="" />
-          <Picker.Item label="Afghanistan" value="Afghanistan" />
-          <Picker.Item label="Albania" value="Albania" />
-        </Picker>
+          placeholder="Country"
+          value={country}
+          onChangeText={setCountry}
+        />
         <TextInput
           style={styles.input}
           placeholder="Enter one main goal"
           value={goal}
           onChangeText={setGoal}
         />
-        <Button
-          title="Submit"
-          onPress={handleSubmit}
-          disabled={isLoading || !name || !description || !category || !url || !commandments || !country || !goal}
-        />
-        {isLoading && <Text style={styles.message}>Creating religion...</Text>}
-        {isError && <Text style={styles.message}>Error: {error.message}</Text>}
-        {isSuccess && <Text style={styles.message}>Religion created successfully!</Text>}
+        <AddButton title="Elige un emblema" onPress={pickImage}/>
+        <Image style={styles.imagePreview} source={image ? {uri:image} : require("../../assets/adaptive-icon.png")}/>
+        <AddButton title="Submit" onPress={() => mutate({newReligion})}/>
       </View>
-      <Pressable onPress={()=>navigation.navigate("Home")}>
-        <View style={styles.back}>
-          <Text style={styles.text}>VOLVER</Text>
-        </View>
-      </Pressable>
     </View>
   );
 };
@@ -131,12 +130,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     margin: 10,
+    borderRadius: 25, 
   },
   message: {
     fontSize: 18,
     color: '#888',
     margin: 10,
   },
+  imagePreview: {
+    width: 50, 
+    height: 50, 
+    borderRadius: 25, 
+    marginLeft: 130,
+  }
 });
 
 

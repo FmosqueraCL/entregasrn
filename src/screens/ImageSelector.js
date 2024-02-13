@@ -6,7 +6,6 @@ import { usePostProfileImageMutation } from '../app/services/shopServices'
 import { useSelector } from 'react-redux'
 import { useGetProfileImageQuery } from '../app/services/shopServices'
 
-
 const ImageSelector = ({navigation}) => {
     const [image,setImage] = useState("")
     const [triggerProfileImage] = usePostProfileImageMutation()

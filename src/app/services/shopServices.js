@@ -5,24 +5,11 @@ import { base_url } from '../../firebase/db'
 export const shopApi = createApi({
   reducerPath: 'shopApi',
   baseQuery: fetchBaseQuery({ baseUrl: base_url }),
-  tagTypes:["image","location"],
+  tagTypes:["image","location","religions","religionId","members"],
   endpoints: (builder) => ({
-    getUserReligions: builder.query({
+    getAllReligions: builder.query({
       query: () => 'religions.json',
-      filter: (userID, data) => {
-        const religions = Object.values(data);
-        const userReligions = religions.filter(religion => religion.creator === userID);
-        return userReligions;
-      },
-    }),    
-    getLastReligion: builder.query({
-      query: () => 'religions.json',
-      transformResponse: (response) => {
-        const religions = Object.values(response);
-        const lastReligion = religions[religions.length - 1];
-        return lastReligion.id;
-      },
-    }),    
+    }),     
     postReligion: builder.mutation({
       query:(newReligion) => ({
         url: 'religions.json',
@@ -30,6 +17,20 @@ export const shopApi = createApi({
         body:newReligion,
       })
     }),
+    postMember: builder.mutation({
+      query: ({id, userId}) => ({
+        url: `religions/${id}/members.json`,
+        method: "PUT",
+        body:  {userId:userId},  
+      }),
+      invalidatesTags: ["religions"],
+    }),    
+    getReligionDetails: builder.query({
+      query: (id) => `religions/${id}.json`,
+
+    }),     
+  
+    
     postProfileImage: builder.mutation({
       query: ({localId,image}) => ({
         url:`profileImages/${localId}.json`,
@@ -42,25 +43,14 @@ export const shopApi = createApi({
       query: (localId) => `profileImages/${localId}.json`,
       providesTags:["image"]
     }),
-    postUserLocation: builder.mutation({
-      query: ({localId,locationFormatted}) => ({
-        url:`userLocation/${localId}.json`,
-        method:"PUT",
-        body:locationFormatted
-      }),
-      invalidatesTags:["location"]
-    }),
-    getUserLocation: builder.query({
-      query: (localId) => `userLocation/${localId}.json`,
-      providesTags:["location"]
-    }),
   }),
 })
 
-export const {useGetUserReligionsQuery,
+export const {useGetAllReligionsQuery,
+              
               usePostReligionMutation,
+              useGetReligionDetailsQuery,              
+              usePostMemberMutation,  
               usePostProfileImageMutation,
-              useGetProfileImageQuery,
-              usePostUserLocationMutation,
-              useGetUserLocationQuery
+              useGetProfileImageQuery,              
              } = shopApi
